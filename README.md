@@ -1,73 +1,47 @@
-# React + TypeScript + Vite
+# PokéViewer: Responsive Pokémon Gallery
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a small React app that fetches **6 random Pokémon** from the public **PokéAPI** and displays them in a responsive card layout. Each Pokémon has:
+- Name
+- Image (official artwork)
+- A few stats (HP, Attack, Defense)
 
-Currently, two official plugins are available:
+Users can also **star** their favorites, and the app remembers them using cookies.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## How to run:
 
-## Expanding the ESLint configuration
+Copy the repo:
+https://github.com/Siggyy1/work_requriement5.git
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Install dependencies: 
+npm run dev
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Open the URL shown in the terminal (usually):
+http://127.0.0.1:5173 
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+🧠 How It Works (Brief Explanation)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+When the app loads, it generates 6 random Pokémon IDs.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+For each ID, the app calls the PokéAPI:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+https://pokeapi.co/api/v2/pokemon/{id}
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+
+The response includes the Pokémon's:
+
+Name
+
+Official artwork image
+
+Stats (HP / Attack / Defense)
+
+The data is then displayed in a reusable card component, and the layout adapts using React Bootstrap:
+
+1 card per row on small screens
+
+2 per row on medium screens
+
+3 per row on large screens
